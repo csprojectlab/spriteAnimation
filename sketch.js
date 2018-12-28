@@ -1,6 +1,7 @@
 let spritedata;
 let spritesheet;
 let animation = [];   // Each frame of an animation
+let horses = [];
 
 function preload () {
     spritedata = loadJSON('./image/horse.json')
@@ -15,12 +16,19 @@ function setup () {
         let img = spritesheet.get(pos.x, pos.y, pos.w, pos.h);
         animation.push(img)
     }
-    console.log(animation)
+    for (let i = 0; i < 5; i++) {
+        horses[i] = new Sprite(random(0.1, 1), animation, 0, i * 75)
+        
+    }   
 
 }
 
 function draw () {
     background(0)
-    image(animation[frameCount % animation.length], 0, 0)
+    // image(animation[frameCount % animation.length], 0, 0)
+    for (let horse of horses) {
+        horse.show();
+        horse.animate();
+    }
     
 }
